@@ -34,9 +34,9 @@ class AppLayout extends Component {
         {({ token }) => (
           <BrowserRouter>
             {token && <Header isOpenAside={this.handleOpenAside} />}
-            {token && <Aside isOpenAside={isOpenAside} />}
-            <div>
-              <main className={styles.main}>
+            <div className={cx({ main: token })}>
+              {token && <Aside isOpenAside={isOpenAside} />}
+              <main className={cx({ mainNoToken: token === null }, { mainToken: token })}>
                 <Routes>
                   <Route
                     path="/"

@@ -26,7 +26,7 @@ class Login extends Component {
     const newUsers = JSON.parse(usersFromLocal);
     const foundUser = newUsers.find((item) => item.userName === login && item.userPassword === password);
     if (foundUser) {
-      handleLogin();
+      handleLogin(true);
       return navigate('/');
     }
     return navigate('/login');
