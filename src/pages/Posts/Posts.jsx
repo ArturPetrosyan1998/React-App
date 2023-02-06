@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import Header from '../../components/Header/Header';
 import { API } from '../../api';
 import Table from '../../components/Table/Table';
 import { postColumns } from './constants';
@@ -24,7 +23,6 @@ class Posts extends Component {
 
     return (
       <div>
-        <Header onClick={this.handleToggleAside} className="header" />
         <Table columns={postColumns} data={getMapPosts(posts)} />
       </div>
 

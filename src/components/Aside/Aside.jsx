@@ -5,10 +5,10 @@ import styles from './Aside.module.scss';
 const cx = classNames.bind(styles);
 class Aside extends Component {
   render() {
-    const { isOpen } = this.props;
+    const { isOpenAside } = this.props;
 
     return (
-      <aside className={cx('aside', { open: isOpen })} />
+      <aside className={cx('aside', { open: isOpenAside })} />
     );
   }
 }

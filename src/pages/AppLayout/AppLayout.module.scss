@@ -1,0 +1,17 @@
+.main {
+     display: flex;
+     max-height: calc(100vh - 64px);
+}
+.mainNoToken{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     height: 100vh;
+}
+
+.mainToken{
+     margin: 0 auto;
+     padding: 30px
+     ;
+}

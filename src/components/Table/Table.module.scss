@@ -1,4 +1,4 @@
-table {
+.table {
     width: 100%;
     border: 1px solid;
     border-collapse: collapse;
@@ -6,18 +6,18 @@ table {
 }
 
 
-tr,
-td,
-th {
+.tr,
+.td,
+.th {
     border: 1px solid;
 }
 
-td,
-th {
+.td,
+.th {
     padding: 10px;
 }
 
-tr:hover {
+.tr:hover {
     background-color: aqua;
     cursor: pointer;
 }
