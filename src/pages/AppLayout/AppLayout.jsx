@@ -5,7 +5,6 @@ import Aside from '../../components/Aside/Aside';
 import Header from '../../components/Header/Header';
 import PrivateRoute from '../../components/routes/PrivateRoute';
 import PublicRoute from '../../components/routes/PublicRoute';
-import { Consumer } from '../../context/AuthContext';
 import NotFound from '../404/404';
 import Login from '../auth/Login/Login';
 import Registration from '../auth/Register/Registration';
@@ -30,83 +29,78 @@ class AppLayout extends Component {
   render() {
     const { isOpenAside } = this.state;
     return (
-      <Consumer>
-        {({ token }) => (
-          <BrowserRouter>
-            {token && <Header isOpenAside={this.handleOpenAside} />}
-            <div className={cx({ main: token })}>
-              {token && <Aside isOpenAside={isOpenAside} />}
-              <main className={cx({ mainNoToken: token === null }, { mainToken: token })}>
-                <Routes>
-                  <Route
-                    path="/"
-                    element={(
-                      <PrivateRoute>
-                        <Home />
-                      </PrivateRoute>
-                                  )}
-                  />
-                  <Route
-                    path="/counter"
-                    element={(
-                      <PrivateRoute>
-                        <Counter />
-                      </PrivateRoute>
-                                  )}
-                  />
-                  <Route
-                    path="/users"
-                    element={(
-                      <PrivateRoute>
-                        <Users />
-                      </PrivateRoute>
-                                  )}
-                  />
-                  <Route
-                    path="/posts"
-                    element={(
-                      <PrivateRoute>
-                        <Posts />
-                      </PrivateRoute>
-                                  )}
-                  />
-                  <Route
-                    path="/login"
-                    element={(
-                      <PublicRoute>
-                        <Login />
-                      </PublicRoute>
-                                  )}
-                  />
-                  <Route
-                    path="/registration"
-                    element={(
-                      <PublicRoute>
-                        <Registration />
-                      </PublicRoute>
-                                  )}
-                  />
-                  <Route
-                    path="*"
-                    element={(
-                      <NotFound />
-                                  )}
-                  />
-                  <Route
-                    path="/user"
-                    element={(
-                      <User />
-                                  )}
-                  />
-                </Routes>
-              </main>
-            </div>
+      <BrowserRouter>
+        {token && <Header isOpenAside={this.handleOpenAside} />}
+        {token && <Aside isOpenAside={isOpenAside} />}
+        <div>
+          <main className={styles.main}>
+            <Routes>
+              <Route
+                path="/"
+                element={(
+                  <PrivateRoute>
+                    <Home />
+                  </PrivateRoute>
+                  )}
+              />
+              <Route
+                path="/counter"
+                element={(
+                  <PrivateRoute>
+                    <Counter />
+                  </PrivateRoute>
+                  )}
+              />
+              <Route
+                path="/users"
+                element={(
+                  <PrivateRoute>
+                    <Users />
+                  </PrivateRoute>
+                  )}
+              />
+              <Route
+                path="/posts"
+                element={(
+                  <PrivateRoute>
+                    <Posts />
+                  </PrivateRoute>
+                  )}
+              />
+              <Route
+                path="/login"
+                element={(
+                  <PublicRoute>
+                    <Login />
+                  </PublicRoute>
+                  )}
+              />
+              <Route
+                path="/registration"
+                element={(
+                  <PublicRoute>
+                    <Registration />
+                  </PublicRoute>
+                  )}
+              />
+              <Route
+                path="*"
+                element={(
+                  <NotFound />
+                  )}
+              />
+              <Route
+                path="/user"
+                element={(
+                  <User />
+                  )}
+              />
+            </Routes>
+          </main>
+        </div>
 
-          </BrowserRouter>
-        )}
-      </Consumer>
+      </BrowserRouter>
     );
   }
 }
-
-export default AppLayout;
+export default withAuthProvider(withDialog(AppLayout));
